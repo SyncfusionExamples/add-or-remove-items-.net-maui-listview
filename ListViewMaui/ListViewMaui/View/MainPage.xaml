@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="ListViewMaui.MainPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ListViewMaui"
+             xmlns:listView="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"   
+             BackgroundColor="White">
+
+    <ContentPage.BindingContext>
+        <local:ContactsViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout>
+        <Grid HeightRequest="50" ColumnSpacing="5" Padding="5"> 
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Text="Add item" Grid.Column="0" Command="{Binding AddCommand}"/>
+            <Button Text="Delete last item" Grid.Column="1" Command="{Binding DeleteCommand}"/>
+        </Grid>
+        <listView:SfListView x:Name="listView" ItemSize="70" ItemsSource="{Binding ContactsInfo}" VerticalOptions="FillAndExpand">
+            <listView:SfListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid x:Name="grid" RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="1" />
+                        </Grid.RowDefinitions>
+                        <Grid RowSpacing="0" Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image Grid.Column="0"
+                                   Source="{Binding ContactImage}"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"
+                                   HeightRequest="50"
+                                   WidthRequest="50" />
+
+                            <Grid Grid.Row="0" Grid.Column="1" RowSpacing="2" Padding="10,0,0,0" VerticalOptions="Center">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Label LineBreakMode="NoWrap"
+                                       Grid.Row="0"
+                                       TextColor="#DE000000"
+                                       Text="{Binding ContactName}"
+                                       FontFamily="Roboto"
+                                       VerticalOptions="End"
+                                       VerticalTextAlignment="End"
+                                       FontSize="{OnPlatform Android={OnIdiom Phone=16, Tablet=18}, iOS=16, UWP=16}" />
+                                <Label Grid.Row="1"
+                                       Grid.Column="0"
+                                       TextColor="#99000000"
+                                       FontFamily="Roboto"
+                                       LineBreakMode="NoWrap"
+                                       VerticalOptions="Start"
+                                       VerticalTextAlignment="Start"
+                                       Text="{Binding ContactNumber}"
+                                       FontSize="{OnPlatform Android={OnIdiom Phone=14, Tablet=14}, iOS=14, UWP=14}" />
+                            </Grid>
+                        </Grid>
+                        <StackLayout Grid.Row="1" BackgroundColor="#E4E4E4" HeightRequest="1" />
+                    </Grid>
+                </DataTemplate>
+            </listView:SfListView.ItemTemplate>
+        </listView:SfListView>
+    </StackLayout>
+</ContentPage>

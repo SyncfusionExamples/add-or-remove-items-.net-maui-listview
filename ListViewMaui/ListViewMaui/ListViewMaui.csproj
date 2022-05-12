@@ -1,0 +1,75 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows')) and '$(MSBuildRuntimeType)' == 'Full'">$(TargetFrameworks);net6.0-windows10.0.19041</TargetFrameworks>
+		<OutputType>Exe</OutputType>
+		<RootNamespace>ListViewMaui</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<!-- Display name -->
+		<ApplicationTitle>ListViewMaui</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.listviewmaui</ApplicationId>
+		<ApplicationId Condition="$(TargetFramework.Contains('-windows'))">5884ABA5-1FD3-4BF1-B232-4CF1C2A53C2C</ApplicationId>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-ios'">14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-maccatalyst'">14.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$(TargetFramework.Contains('-windows'))">10.0.18362.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$(TargetFramework.Contains('-windows'))">10.0.18362.0</TargetPlatformMinVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\appicon.svg" ForegroundFile="Resources\appiconfg.svg" Color="#512BD4" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\appiconfg.svg" Color="#512BD4" BaseSize="128,128" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Images\people_circle0.png" />
+	  <None Remove="Resources\Images\people_circle1.png" />
+	  <None Remove="Resources\Images\people_circle10.png" />
+	  <None Remove="Resources\Images\people_circle11.png" />
+	  <None Remove="Resources\Images\people_circle12.png" />
+	  <None Remove="Resources\Images\people_circle13.png" />
+	  <None Remove="Resources\Images\people_circle14.png" />
+	  <None Remove="Resources\Images\people_circle15.png" />
+	  <None Remove="Resources\Images\people_circle16.png" />
+	  <None Remove="Resources\Images\people_circle17.png" />
+	  <None Remove="Resources\Images\people_circle18.png" />
+	  <None Remove="Resources\Images\people_circle19.png" />
+	  <None Remove="Resources\Images\people_circle2.png" />
+	  <None Remove="Resources\Images\people_circle3.png" />
+	  <None Remove="Resources\Images\people_circle4.png" />
+	  <None Remove="Resources\Images\people_circle5.png" />
+	  <None Remove="Resources\Images\people_circle6.png" />
+	  <None Remove="Resources\Images\people_circle7.png" />
+	  <None Remove="Resources\Images\people_circle8.png" />
+	  <None Remove="Resources\Images\people_circle9.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Syncfusion.Maui.ListView" Version="20.1.51-preview" />
+	</ItemGroup>
+
+</Project>
